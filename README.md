@@ -30,20 +30,23 @@ python presque.py --data_file=../data/QuRe.json  --approximate_window=2 --range_
 
 ### Data
 data/hvd_quantifier_perception.json: The human perception of 5 quantifiers (no, few, some, most, all).
+- Configuration: key is the quantifier, value is a list over all percentage values. Each entry in the each percentage value results represents whether the percentage value is selected by an annotator.
+- Run ```python gen_human_perception.py``` for human perception result.
 
 data/QuRe.json: The QuRe dataset
 - Metadata sample
 ```
 {
-    "orig_sentence": "Coconut milk contains 5% to 20% fat, while coconut cream contains around 20% to 50% fat.", "percentage": "5%-20%", 
+    "orig_sentence": "In order for a steel to be considered stainless it must have a Chromium content of at least 10.5%.", 
+    "percentage": "10.50%", 
     "percentage_index": 0, 
-    "math_expr": "0.05-0.2", 
-    "quant_sent": "Coconut milk contains 5% to 20% fat, while coconut cream contains moderate fat.", 
-    "quantifier": "moderate", 
-    "quantifier_position": 14, 
+    "math_expr": ">=0.105", 
+    "quant_sent": "In order for a steel to be considered stainless it must have some Chromium content.", 
+    "quantifier": "some", 
+    "quantifier_position": 12, 
     "specificity": "unable", 
-    "wiki_entity": "Coconut", 
-    "topics": "food; nutrition; fat percentage"
+    "wiki_entity": "List of blade materials", 
+    "topics": "metallurgy; steel; composition"
 }
 ```
    * orig_sentence: the original sentence appeared in Wikipedia.
