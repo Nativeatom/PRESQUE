@@ -62,16 +62,21 @@ data/QuRe.json: The QuRe dataset
 
 ### Reference
 ```
-@inproceedings{li-etal-2023-presque,
+@inproceedings{li-etal-2023-pragmatic,
     title = "Pragmatic Reasoning Unlocks Quantifier Semantics for Foundation Models",
     author = "Li, Yiyuan  and
-      R. Menon, Rakesh  and
+      Menon, Rakesh  and
       Ghosh, Sayan  and
       Srivastava, Shashank",
+    editor = "Bouamor, Houda  and
+      Pino, Juan  and
+      Bali, Kalika",
     booktitle = "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
     month = dec,
     year = "2023",
     address = "Singapore",
     publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.emnlp-main.38",
+    pages = "573--591",
 }
 ```
