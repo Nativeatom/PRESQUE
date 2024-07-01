@@ -1,7 +1,8 @@
 <h1>PRESQUE: Pragmatic Reasoning for Quantifier Semantics</h1>
-[[Paper]](https://arxiv.org/abs/2311.04659) [[Huggingface]](https://huggingface.co/datasets/billli/QuRe)<br />
-<br />
 
+[[Paper]](https://arxiv.org/abs/2311.04659)  [[Huggingface]](https://huggingface.co/datasets/billli/QuRe
+)<br />
+<br />
 Here is the repository for "Pragmatic Reasoning Unlocks Quantifier Semantics for Foundation Models" in EMNLP 2023.
 
 ### Environment
