@@ -1,6 +1,8 @@
 <h1>PRESQUE: Pragmatic Reasoning for Quantifier Semantics</h1>
+[[Paper]](https://arxiv.org/abs/2311.04659) [[Huggingface]](https://huggingface.co/datasets/billli/QuRe)<br />
+<br />
 
-Here is the repository for "Pragmatic Reasoning Unlocks Quantifier Semantics for Foundation Models" [[link]](https://arxiv.org/abs/2311.04659)
+Here is the repository for "Pragmatic Reasoning Unlocks Quantifier Semantics for Foundation Models" in EMNLP 2023.
 
 ### Environment
 ```
@@ -29,6 +31,12 @@ python presque.py --data_file=../data/QuRe.json  --approximate_window=2 --range_
 - device: whether to use GPU, default cuda.
 
 ### Data
+#### Import QuRe from Huggingface
+```
+from datasets import load_dataset
+
+ds = load_dataset("billli/QuRe")
+```
 data/hvd_quantifier_perception.json: The human perception of 5 quantifiers (no, few, some, most, all).
 - Configuration: key is the quantifier, value is a list over all percentage values. Each entry in the each percentage value results represents whether the percentage value is selected by an annotator.
 - Run ```python gen_human_perception.py``` for human perception result.
