@@ -3,6 +3,7 @@
 [[Paper]](https://arxiv.org/abs/2311.04659)  [[Huggingface]](https://huggingface.co/datasets/billli/QuRe
 )<br />
 <br />
+
 Here is the repository for "Pragmatic Reasoning Unlocks Quantifier Semantics for Foundation Models" in EMNLP 2023.
 
 ### Environment
@@ -11,38 +12,29 @@ conda env create -f presque.yaml
 conda activate presque
 ```
 
-### PRESQUE
-#### Sample command
-```
-cd code
-python presque.py --data_file=../data/QuRe.json  --approximate_window=2 --range_window=2 --display_every=100 --model_version=ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli
-```
-
-#### Parameters
-- data_file: the data file.
-- interval: the interval width &beta;.
-- granularity: the granularity *g*.
-- approximate_window: the window size *w* for the approximation operator (~).
-- range_window: the window size *w* for other operators.
-- out_dir: the directory to save results, default ../result.
-- note: the note to save for result names.
-- model_version: the model used to serve the NLI component.
-- batch_size: the batch size for running experiments.
-- display_every: the frequency to display sample output.
-- device: whether to use GPU, default cuda.
-
 ### Data
-#### Import QuRe from Huggingface
+
+```data/hvd_quantifier_perception.json```: The human perception of 5 quantifiers (no, few, some, most, all).
+- Configuration: key is the quantifier, value is a list over all percentage values. Each entry in the each percentage value results represents whether the percentage value is selected by an annotator.
+- Run ```python gen_human_perception.py``` for human perception result.
+
+##### Human Perception of Quantifiers
+<img src="figures/human_perception.png"/>
+
+#### QuRe
+QuRe is a quantifier dataset that includes Wikipedia sentences and human annotation of generalized quantifiers in target percentage mentions in the sentence. It include three splits regarding the difficulty in measuring the target percentage mention.
+- **Fully**: the target percentage scope can be fully determined by other contents in the sentence, like *One in ten* for *10%*
+- **Partial**: the percentage scope can be narrowed but not determined by the contents (e.g. an incomplete percentage breakdown).
+- **Indeterminable**: there is no information in the
+content of the sentence to determine the percentage scope.
+
+#### Load QuRe from Huggingface
 ```
 from datasets import load_dataset
 
 ds = load_dataset("billli/QuRe")
 ```
-data/hvd_quantifier_perception.json: The human perception of 5 quantifiers (no, few, some, most, all).
-- Configuration: key is the quantifier, value is a list over all percentage values. Each entry in the each percentage value results represents whether the percentage value is selected by an annotator.
-- Run ```python gen_human_perception.py``` for human perception result.
-
-data/QuRe.json: The QuRe dataset
+```data/QuRe.json```: The QuRe dataset
 - Metadata sample
 ```
 {
@@ -68,6 +60,35 @@ data/QuRe.json: The QuRe dataset
    * wiki_entity: the wikipedia entity that includes <i>orig_sentence</i>.
    * topics: sentence topics.
 
+
+### PRESQUE
+PRESQUE is a pragamatic reasoning based quantifier reasoning framework.
+#### Sample Command
+```
+cd code
+python presque.py --data_file=../data/QuRe.json  --approximate_window=2 --range_window=2 --display_every=100 --model_version=ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli
+```
+
+#### Parameters
+- data_file: the data file.
+- interval: the interval width &beta;.
+- granularity: the granularity *g*.
+- approximate_window: the window size *w* for the approximation operator (~).
+- range_window: the window size *w* for other operators.
+- out_dir: the directory to save results, default ../result.
+- note: the note to save for result names.
+- model_version: the model used to serve the NLI component.
+- batch_size: the batch size for running experiments.
+- display_every: the frequency to display sample output.
+- device: whether to use GPU, default cuda.
+
+### Performance of PRESQUE on QuRe Splits
+<img src="figures/QuRe_metrics.png"/>
+Metrics
+
+- Consecutiveness: whether the top K predictions forms a consecutive percentage span.
+- MSD: minimal scope distance.
+- F1: the span-level F1 between the consecutive percentage span of the top K predictions and the golden percentage scope.
 
 ### Reference
 ```
